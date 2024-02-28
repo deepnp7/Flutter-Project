@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
               255, 45, 45, 45), // Set app bar color for dark theme
         ),
       ),
-      initialRoute:  "/home",
+      initialRoute: "/home",
       routes: {
         "/": (context) => LoginPage(),
         "/home": (context) => HomePage(),
