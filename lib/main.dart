@@ -3,6 +3,8 @@
 import "package:flutter/material.dart";
 import "package:flutter_application_1/pages/home_page.dart";
 import "package:flutter_application_1/pages/login_page.dart";
+import "package:flutter_application_1/utils/routes.dart";
+import "package:google_fonts/google_fonts.dart";
 
 void main() {
   runApp(MyApp());
@@ -19,6 +21,8 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: ThemeData(
         // primarySwatch: Colors.deepPurple,
+        fontFamily: GoogleFonts.lato().fontFamily,
+        primaryTextTheme: GoogleFonts.latoTextTheme(),
         appBarTheme: AppBarTheme(
           backgroundColor: Color.fromARGB(
               255, 77, 211, 232), // Set app bar color for light theme
@@ -31,11 +35,11 @@ class MyApp extends StatelessWidget {
               255, 45, 45, 45), // Set app bar color for dark theme
         ),
       ),
-      initialRoute: "/home",
+      initialRoute: "/",
       routes: {
         "/": (context) => LoginPage(),
-        "/home": (context) => HomePage(),
-        "/login": (context) => LoginPage(),
+        MyRoutes.homeRoute: (context) => HomePage(),
+        MyRoutes.loginRoute: (context) => LoginPage(),
       },
     );
   }
