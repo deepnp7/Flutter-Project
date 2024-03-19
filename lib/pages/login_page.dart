@@ -23,14 +23,15 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         changeButton = true;
       });
-    
-    await Future.delayed(Duration(seconds: 1));
-    await Navigator.pushNamed(context, MyRoutes.homeRoute);
-    setState(() {
-      changeButton = false;
-    });
+
+      await Future.delayed(Duration(seconds: 1));
+      await Navigator.pushNamed(context, MyRoutes.homeRoute);
+      setState(() {
+        changeButton = false;
+      });
+    }
   }
-}
+
   @override
   Widget build(BuildContext context) {
     return Material(
