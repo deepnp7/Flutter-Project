@@ -11,7 +11,7 @@ class MyDrawer extends StatelessWidget {
     // ignore: unused_local_variable
     final imageUrl = "https://avatars.githubusercontent.com/u/105645365?v=4";
     return Drawer(
-        child: Container(
+        child: Container (
       color: Colors.white,
       child: ListView(
         padding: EdgeInsets.zero,
