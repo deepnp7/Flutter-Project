@@ -11,7 +11,7 @@ class MyDrawer extends StatelessWidget {
     // ignore: unused_local_variable
     final imageUrl = "https://avatars.githubusercontent.com/u/105645365?v=4";
     return Drawer(
-        child: Container (
+        child: Container(
       color: Colors.white,
       child: ListView(
         padding: EdgeInsets.zero,
@@ -32,6 +32,7 @@ class MyDrawer extends StatelessWidget {
             leading: Icon(CupertinoIcons.home),
             title: Text(
               "Home",
+              // ignore: deprecated_member_use
               textScaleFactor: 1.1,
             ),
           ),
@@ -39,6 +40,7 @@ class MyDrawer extends StatelessWidget {
             leading: Icon(CupertinoIcons.profile_circled),
             title: Text(
               "Profile",
+              // ignore: deprecated_member_use
               textScaleFactor: 1.1,
             ),
           ),
@@ -46,6 +48,7 @@ class MyDrawer extends StatelessWidget {
             leading: Icon(CupertinoIcons.mail),
             title: Text(
               "Mail ",
+              // ignore: deprecated_member_use
               textScaleFactor: 1.1,
             ),
           )
