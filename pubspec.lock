@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  auto_size_text_pk:
+    dependency: transitive
+    description:
+      name: auto_size_text_pk
+      sha256: ced55de5336fa7f438c1f5a9aa234e25d7a120c1d40d376a7cdc2af28cdb6995
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -82,12 +90,17 @@ packages:
     dependency: "direct dev"
     description:
       name: flutter_lints
-      sha256: "9e8c3858111da373efc5aa341de011d9bd23e2c5c5e0c62bccf32438e192d7b1"
+      sha256: "5398f14efa795ffb7a33e9b6a08798b26a180edac4ad7db3f231e40f82ce11e1"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.2"
+    version: "5.0.0"
   flutter_test:
     dependency: "direct dev"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -115,6 +128,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.19.0"
   leak_tracker:
     dependency: transitive
     description:
@@ -143,10 +164,10 @@ packages:
     dependency: transitive
     description:
       name: lints
-      sha256: cbf8d4b858bb0134ef3ef87841abdf8d63bfc255c266b7bf6b39daa1085c4290
+      sha256: "3315600f3fb3b135be672bf4a178c55f274bebe368325ae18462c89ac1e3b413"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.0"
+    version: "5.0.0"
   logging:
     dependency: "direct main"
     description:
@@ -320,6 +341,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  velocity_x:
+    dependency: "direct main"
+    description:
+      name: velocity_x
+      sha256: "99b910c80cc2010b184ef921f0af6894a8d632e13169cf77e6f6cb5a7f310698"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.1"
   vm_service:
     dependency: transitive
     description:
@@ -328,6 +357,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "14.2.5"
+  vxstate:
+    dependency: transitive
+    description:
+      name: vxstate
+      sha256: ed5a880018191c5cfed8528bd77f2a942b04847168ca12636a306c323d311086
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.0"
   web:
     dependency: transitive
     description:
@@ -345,5 +382,5 @@ packages:
     source: hosted
     version: "1.0.4"
 sdks:
-  dart: ">=3.4.0 <4.0.0"
+  dart: ">=3.5.0 <4.0.0"
   flutter: ">=3.22.0"

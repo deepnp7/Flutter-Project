@@ -16,16 +16,16 @@ dependencies:
   flutter:
     sdk: flutter
   logging: ^1.0.2
-
-  # Add any additional dependencies here
+  velocity_x: ^4.2.1  # Add any additional dependencies here
   cupertino_icons: ^1.0.2
   google_fonts: ^6.1.0
 
 # Dev dependencies for testing and linting
-dev_dependencies:
+dev_dependencies: 
+
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.1
+  flutter_lints: ^5.0.0
 
 # Flutter-specific configurations
 flutter:
