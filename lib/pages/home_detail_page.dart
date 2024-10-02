@@ -12,31 +12,39 @@ class HomeDetailPage extends StatelessWidget {
       : assert(catalog != null),
         super(key: key);
 
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(),
-    backgroundColor: MyTheme.creamColor,
-    bottomNavigationBar: Container(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 36.0, vertical: 30.0), // Add vertical padding
-        child: Row( // Replaced ButtonBar with Row
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            "\$${catalog.price}".text.bold.xl4.black.make(),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: MyTheme.darkBluishColor, // Updated style
-                shape: const StadiumBorder(),
-              ),
-              child: "Buy".text.bold.black.make(), // Made text bold and black
-            ).wh(100, 50),
-          ],
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
+      backgroundColor: MyTheme.creamColor,
+      bottomNavigationBar: Container(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: 36.0, vertical: 30.0), // Add vertical padding
+          child: Row(
+            // Replaced ButtonBar with Row
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              "\$${catalog.price}".text.bold.xl4.black.make(),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: MyTheme.darkBluishColor, // Updated style
+                  shape: const StadiumBorder(),
+                ),
+                child: "Add to Cart"
+                    .text
+                    .bold
+                    .black
+                    .make(), // Made text bold and black
+              ).wh(130, 50),
+            ],
+          ),
         ),
       ),
-    ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0), // Add padding to the image
@@ -74,6 +82,11 @@ Widget build(BuildContext context) {
                             .xl
                             .make(),
                         10.heightBox,
+                        "Dolore et deserunt anim adipisicing non mollit sunt pariatur sunt.bvnbvbvvbnvnbvnbvnbvnbvnbvnbvbnvnbvnbvbvnbvbvnbvnbvnbvbvbvnbvbvvbv"
+                            .text
+                            .textStyle(context.captionStyle)
+                            .make()
+                            .p16()
                       ],
                     ).py32(),
                   ),

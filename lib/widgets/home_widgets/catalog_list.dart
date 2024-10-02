@@ -20,8 +20,9 @@ class CatalogList extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => HomeDetailPage(
-                catalog: catalog, 
-                key: Key(catalog.id.toString()), // Pass a key or use a unique key like this
+                catalog: catalog,
+                key: Key(catalog.id
+                    .toString()), // Pass a key or use a unique key like this
               ),
             ),
           ),
@@ -35,7 +36,7 @@ class CatalogList extends StatelessWidget {
 class CatalogItem extends StatelessWidget {
   final Item catalog;
 
-  const CatalogItem({super.key, required this.catalog}); // Removed 'assert(catalog != null)'
+  const CatalogItem({super.key, required this.catalog});
 
   @override
   Widget build(BuildContext context) {
@@ -60,16 +61,24 @@ class CatalogItem extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      "\$${catalog.price}".text.bold.xl.make(),
+                      "\$${catalog.price}"
+                          .text
+                          .bold
+                          .xl
+                          .make()
+                          .pOnly(right: 16.0), // Added right padding for space
                       ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           backgroundColor: MyTheme.darkBluishColor,
                           shape: const StadiumBorder(),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0,
+                              vertical: 8.0), // Adjust padding
                         ),
                         child: Text(
-                          "Buy",
-                          style: TextStyle(
+                          "Add to Cart",
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.black, // Set the text color to black
                           ),
@@ -83,6 +92,6 @@ class CatalogItem extends StatelessWidget {
           ),
         ],
       ),
-    ).white.rounded.square(150).make().py16();
+    ).white.rounded.square(140).make().py8();
   }
 }
