@@ -18,9 +18,9 @@ class HomeDetailPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
-      backgroundColor: MyTheme.creamColor,
+      backgroundColor: context.canvasColor,
       bottomNavigationBar: Container(
-        color: Colors.white,
+        color: context.cardColor,
         child: Padding(
           padding: const EdgeInsets.symmetric(
               horizontal: 36.0, vertical: 30.0), // Add vertical padding
@@ -28,17 +28,17 @@ class HomeDetailPage extends StatelessWidget {
             // Replaced ButtonBar with Row
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              "\$${catalog.price}".text.bold.xl4.black.make(),
+              "\$${catalog.price}".text.bold.xl4.purple600.make(),
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: MyTheme.darkBluishColor, // Updated style
+                  backgroundColor: MyTheme.lightBluishColor, // Updated style
                   shape: const StadiumBorder(),
                 ),
                 child: "Add to Cart"
                     .text
                     .bold
-                    .black
+                    .white
                     .make(), // Made text bold and black
               ).wh(130, 50),
             ],
@@ -67,14 +67,14 @@ class HomeDetailPage extends StatelessWidget {
                 child: VxArc(
                   height: 30.0,
                   arcType: VxArcType.convey, // Updated type to 'convex'
-                  edge: VxEdge.bottom,
+                  edge: VxEdge.top,
                   child: Container(
-                    color: Colors.white,
+                    color: context.cardColor,
                     width: context.screenWidth,
                     child: Column(
                       children: [
                         catalog.name.text.xl4
-                            .color(MyTheme.darkBluishColor)
+                            .color(MyTheme.lightBluishColor)
                             .bold
                             .make(),
                         catalog.desc.text
