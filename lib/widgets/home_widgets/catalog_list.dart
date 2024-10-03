@@ -1,9 +1,12 @@
+// ignore_for_file: unnecessary_null_comparison, no_leading_underscores_for_local_identifiers, unused_element
+
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/cart.dart';
 import 'package:flutter_application_1/models/catalog.dart';
-import 'package:flutter_application_1/widgets/home_widgets/catalog_image.dart';
-import "package:velocity_x/velocity_x.dart";
-import 'package:flutter_application_1/widgets/themes.dart';
 import 'package:flutter_application_1/pages/home_detail_page.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+import 'catalog_image.dart';
 
 class CatalogList extends StatelessWidget {
   const CatalogList({super.key});
@@ -19,11 +22,8 @@ class CatalogList extends StatelessWidget {
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => HomeDetailPage(
-                catalog: catalog,
-                key: Key(catalog.id
-                    .toString()), // Pass a key or use a unique key like this
-              ),
+              builder: (context) =>
+                  HomeDetailPage(catalog: catalog, key: ValueKey(catalog.id)),
             ),
           ),
           child: CatalogItem(catalog: catalog),
@@ -36,15 +36,20 @@ class CatalogList extends StatelessWidget {
 class CatalogItem extends StatelessWidget {
   final Item catalog;
 
-  const CatalogItem({super.key, required this.catalog});
+  const CatalogItem({Key? key, required this.catalog})
+      : assert(catalog != null), // Ensuring catalog isn't null
+        super(key: key); // Super constructor for the Key
 
   @override
   Widget build(BuildContext context) {
     return VxBox(
       child: Row(
         children: [
-          CatalogImage(
-            image: catalog.image,
+          Hero(
+            tag: Key(catalog.id.toString()),
+            child: CatalogImage(
+              image: catalog.image,
+            ),
           ),
           Expanded(
             child: Column(
@@ -52,49 +57,61 @@ class CatalogItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 catalog.name.text.lg
-                    .color(MyTheme.lightBluishColor)
+                    .color(context.theme.colorScheme.secondary)
                     .bold
                     .make(),
-                catalog.desc.text
-                    .textStyle(Theme.of(context).textTheme.bodySmall)
-                    .make(),
+                catalog.desc.text.textStyle(context.captionStyle!).make(),
                 10.heightBox,
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      "\$${catalog.price}"
-                          .text
-                          .bold
-                          .xl
-                          .make()
-                          .pOnly(right: 16.0), // Added right padding for space
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: MyTheme.lightBluishColor,
-                          shape: const StadiumBorder(),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16.0,
-                              vertical: 8.0), // Adjust padding
-                        ),
-                        child: Text(
-                          "Add to Cart",
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black, // Set the text color to black
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                ButtonBar(
+                  alignment: MainAxisAlignment.spaceBetween,
+                  buttonPadding: EdgeInsets.zero,
+                  children: [
+                    "\$${catalog.price}".text.bold.xl.make(),
+                    _AddToCart(catalog: catalog),
+                  ],
+                ).pOnly(right: 8.0),
               ],
             ),
           ),
         ],
       ),
-    ).color(context.cardColor).square(140).make().py8();
+    ).color(context.cardColor).rounded.square(150).make().py16();
+  }
+}
+
+class _AddToCart extends StatefulWidget {
+  final Item catalog;
+
+  const _AddToCart(
+      {super.key, required this.catalog}); // Super parameter for Key
+
+  @override
+  __AddToCartState createState() => __AddToCartState();
+}
+
+class __AddToCartState extends State<_AddToCart> {
+  bool isAdded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        setState(() {
+          isAdded = !isAdded;
+        });
+
+        final _catalog = CatalogModel();
+        final _cart = CartModel();
+        _cart.catalog = _catalog;
+        _cart.add(widget.catalog);
+        setState(() {});
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor:
+            context.theme.colorScheme.secondary, // Updated for compatibility
+        shape: const StadiumBorder(),
+      ),
+      child: isAdded ? const Icon(Icons.done) : "Add to cart".text.make(),
+    );
   }
 }
