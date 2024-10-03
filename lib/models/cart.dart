@@ -1,18 +1,13 @@
 // ignore_for_file: unnecessary_null_comparison
 
+import 'package:flutter_application_1/core/store.dart';
 import 'package:flutter_application_1/models/catalog.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class CartModel {
-  
-  //  
-  
-  // catalog field
   late CatalogModel _catalog;
-
-  // Collection of IDs - store Ids of each item
   final List<int> _itemIds = [];
 
-  // Get Catalog
   CatalogModel get catalog => _catalog;
 
   set catalog(CatalogModel newCatalog) {
@@ -20,22 +15,29 @@ class CartModel {
     _catalog = newCatalog;
   }
 
-  // Get items in the cart
   List<Item> get items => _itemIds.map((id) => _catalog.getById(id)).toList();
 
-  // Get total price
   num get totalPrice =>
       items.fold(0, (total, current) => total + current.price);
 
-  // Add Item
-
   void add(Item item) {
-    _itemIds.add(item.id);
+    if (!_itemIds.contains(item.id)) { // Prevent adding duplicates
+      _itemIds.add(item.id);
+    }
   }
-
-  // Remove Item
 
   void remove(Item item) {
     _itemIds.remove(item.id);
+  }
+}
+class AddMutation extends VxMutation<MyStore> {
+  final Item catalog;
+
+  AddMutation(this.catalog);
+
+  @override
+  perform() {
+    // Check if cart is not null before accessing it
+    store?.cart.add(catalog); // Use the add method instead of directly accessing _itemIds
   }
 }

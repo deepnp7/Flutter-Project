@@ -1,6 +1,8 @@
-// ignore_for_file: library_private_types_in_public_api, no_leading_underscores_for_local_identifiers, unused_local_variable
+// ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/core/store.dart';
 import 'package:flutter_application_1/models/cart.dart';
 import 'package:flutter_application_1/models/catalog.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -8,38 +10,36 @@ import 'package:velocity_x/velocity_x.dart';
 class AddToCart extends StatelessWidget {
   final Item catalog;
 
-  AddToCart(
-      {super.key, required this.catalog}); // Super parameter for Key
+  const AddToCart({super.key, required this.catalog});
 
-
-
-// class _AddToCartState extends State<AddToCart> {
-  final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
-    bool isInCart = _cart.items.contains(catalog);
-    return ElevatedButton(
-      onPressed: () {
-        if (!isInCart) {
-          isInCart = isInCart.toggle();
-          final _catalog = CatalogModel();
+    return VxBuilder(
+      mutations: {AddMutation}, // Listen to AddMutation
+      builder: (context, _, __) {
+        final CartModel? _cart = (VxState.store as MyStore?)?.cart; // Use nullable type
+
+        if (_cart == null) {
+          return Container(); // Return an empty container if cart is null
         }
-        // setState(() {});
 
-        final _catalog = CatalogModel();
+        bool isInCart = _cart.items.contains(catalog);
 
-        _cart.catalog = _catalog;
-        _cart.add(catalog);
-        // setState(() {});
+        return ElevatedButton(
+          onPressed: () {
+            if (!isInCart) {
+              AddMutation(catalog); // Trigger the mutation
+            }
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: context.theme.colorScheme.secondary,
+            shape: const StadiumBorder(),
+          ),
+          child: isInCart
+              ? const Icon(Icons.done)
+              : const Icon(CupertinoIcons.cart_badge_plus),
+        );
       },
-      style: ElevatedButton.styleFrom(
-        backgroundColor:
-            context.theme.colorScheme.secondary, // Updated for compatibility
-        shape: const StadiumBorder(),
-      ),
-      child: isInCart
-          ? const Icon(Icons.done)
-          : Icon(Icons.add_shopping_cart_outlined),
     );
   }
 }
