@@ -7,7 +7,6 @@ import "package:flutter_application_1/pages/login_page.dart";
 import "package:flutter_application_1/utils/routes.dart";
 import "package:flutter_application_1/widgets/themes.dart";
 
-
 void main() {
   runApp(MyApp());
 }
@@ -15,7 +14,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
- @override
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       themeMode: ThemeMode.system,
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: MyRoutes.homeRoute,
       routes: {
-        "/": (context) => LoginPage(),
+        "/": (context) => HomePage(),
         MyRoutes.homeRoute: (context) => HomePage(),
         MyRoutes.loginRoute: (context) => LoginPage(),
         MyRoutes.cartRoute: (context) => CartPage(),
