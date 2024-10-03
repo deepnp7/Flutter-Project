@@ -1,28 +1,68 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_application_1/widgets/themes.dart';
-// import 'package:velocity_x/velocity_x.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class CartPage extends StatelessWidget {
-  const CartPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context)
-          .canvasColor, // Use theme's canvas color for background
+      backgroundColor: context.canvasColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: Text(
-          "Cart",
-          style: TextStyle(
-            color: Theme.of(context).appBarTheme.titleTextStyle?.color ??
-                (Theme.of(context).brightness == Brightness.dark
-                    ? Colors.white
-                    : Colors.black),
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          ),
+        title: "Cart".text.make(),
+      ),
+      body: Column(
+        children: [
+          _CartList().p32().expand(),
+          Divider(),
+          _CartTotal(),
+        ],
+      ),
+    );
+  }
+}
+
+class _CartTotal extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 200,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          // Replace accentColor with colorScheme.secondary for compatibility
+          "\$9999".text.xl5.color(context.theme.colorScheme.secondary).make(),
+          30.widthBox,
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              backgroundColor: context.theme.colorScheme.secondary, // Updated
+              shape: StadiumBorder(), // Button shape remains the same
+            ),
+            child: "Buy".text.white.make(),
+          ).w32(context)
+        ],
+      ),
+    );
+  }
+}
+
+class _CartList extends StatefulWidget {
+  @override
+  __CartListState createState() => __CartListState();
+}
+
+class __CartListState extends State<_CartList> {
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: 5,
+      itemBuilder: (context, index) => ListTile(
+        leading: Icon(Icons.done),
+        trailing: IconButton(
+          icon: Icon(Icons.remove_circle_outline),
+          onPressed: () {},
         ),
+        title: "Item 1".text.make(),
       ),
     );
   }
