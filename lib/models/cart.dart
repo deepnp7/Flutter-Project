@@ -41,3 +41,15 @@ class AddMutation extends VxMutation<MyStore> {
     store?.cart.add(catalog); // Use the add method instead of directly accessing _itemIds
   }
 }
+
+class RemoveMutation extends VxMutation<MyStore> {
+  final Item catalog;
+
+  RemoveMutation(this.catalog);
+
+  @override
+  perform() {
+    // Check if cart is not null before accessing it
+    store?.cart.remove(catalog); // Use the add method instead of directly accessing _itemIds
+  }
+}

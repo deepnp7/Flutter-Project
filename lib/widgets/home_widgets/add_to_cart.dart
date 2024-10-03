@@ -15,9 +15,10 @@ class AddToCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return VxBuilder(
-      mutations: {AddMutation}, // Listen to AddMutation
+      mutations: {AddMutation, RemoveMutation}, // Listen to AddMutation
       builder: (context, _, __) {
-        final CartModel? _cart = (VxState.store as MyStore?)?.cart; // Use nullable type
+        final CartModel? _cart =
+            (VxState.store as MyStore?)?.cart; // Use nullable type
 
         if (_cart == null) {
           return Container(); // Return an empty container if cart is null
