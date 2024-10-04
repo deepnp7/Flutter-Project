@@ -1,8 +1,10 @@
-// ignore_for_file: library_private_types_in_public_api, avoid_print, unnecessary_null_comparison, unused_import
+// ignore_for_file: library_private_types_in_public_api, avoid_print, unnecessary_null_comparison, unused_import, no_leading_underscores_for_local_identifiers, unused_local_variable, non_constant_identifier_names
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/core/store.dart';
+import 'package:flutter_application_1/models/cart.dart';
 import 'package:flutter_application_1/utils/routes.dart';
 import 'package:flutter_application_1/widgets/home_widgets/catalog_header.dart';
 import 'package:flutter_application_1/widgets/home_widgets/catalog_list.dart';
@@ -12,6 +14,7 @@ import 'package:flutter_application_1/models/catalog.dart';
 import 'package:flutter_application_1/widgets/drawer.dart';
 import 'package:flutter_application_1/widgets/item_widget.dart';
 import "package:velocity_x/velocity_x.dart";
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -44,17 +47,33 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final _cart = (VxState.store as MyStore).cart;
     return Scaffold(
       backgroundColor: context.cardColor,
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
-        backgroundColor: MyTheme.darkBluishColor,
-        child: Icon(
-          CupertinoIcons.cart,
-          color: Colors.white,
-        ),
-      ), // FloatingActionButton
+      floatingActionButton: VxBuilder(
+        mutations: {AddMutation, RemoveMutation}, // Use a Set for mutations
+        builder: (context, store, status) {
+          final CartModel _cart = (VxState.store as MyStore).cart;
+          return FloatingActionButton(
+            onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
+            backgroundColor: MyTheme.darkBluishColor,
+            child: Icon(
+              CupertinoIcons.cart,
+              color: Colors.white,
+            ),
+          ).badge(
+            color: Vx.purple400,
+            size: 25,
+            count: _cart.items.length,
+            textStyle: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          );
+        },
+      ),
+// FloatingActionButton
 
       body: SafeArea(
         child: Container(

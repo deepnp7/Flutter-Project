@@ -50,6 +50,7 @@ class _CartTotal extends StatelessWidget {
                   .make();
             },
           ),
+          
           30.widthBox,
           ElevatedButton(
             onPressed: () {
