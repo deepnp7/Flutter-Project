@@ -10,7 +10,6 @@ Welcome to the **Flutter Project** repository! This project is part of the **30 
 - [Usage](#usage)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Overview
 
@@ -49,18 +48,7 @@ Feel free to switch between branches to explore the code for each day:
 
 git checkout <branch-name>
 
-## Project Structure
 
-Flutter-Project/
-├── lib/
-│ ├── main.dart # Main entry point
-│ ├── pages/ # Contains various screens and pages
-├── assets/
-│ └── files/ # Project assets such as JSON files, images, etc.
-├── macos/ # macOS-specific configuration files
-├── pubspec.yaml # Project dependencies and metadata
-├── README.md # Project documentation (this file)
-└── web/ # Web-related files for Flutter web support
 ## Contributing
 Contributions are welcome! If you'd like to contribute, please follow these steps:
 
@@ -70,3 +58,5 @@ Make your changes.
 Commit your changes (git commit -m 'Add new feature').
 Push to the branch (git push origin feature-branch).
 Open a pull request.
+
+Thank You !
