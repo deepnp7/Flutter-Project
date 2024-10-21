@@ -28,5 +28,13 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+  
+    <!-- Add permission keys -->
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>We need access to your Documents folder to load images</string>
+	<key>NSDownloadsFolderUsageDescription</key>
+	<string>We need access to your Downloads folder to load images</string>
+	<key>NSDesktopFolderUsageDescription</key>
+	<string>We need access to your Desktop folder to load images</string>
 </dict>
 </plist>
